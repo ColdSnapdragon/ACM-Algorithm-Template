@@ -25,3 +25,5 @@
 |动态点分治|[this](https://github.com/ColdSnapdragon/ACM-Algorithm-Template/blob/main/Template1/Centroid_Decomposition_Tree1.cpp)|
 |树上启发式合并|[this](https://github.com/ColdSnapdragon/ACM-Algorithm-Template/blob/main/Template1/dsu_on_tree.cpp)|
 |同余最短路|[this](https://github.com/ColdSnapdragon/ACM-Algorithm-Template/blob/main/Template1/Congruence_shortest_circuit.cpp)|
+|splay平衡树|[this](https://github.com/ColdSnapdragon/ACM-Algorithm-Template/blob/main/Template2/Splay_tree.cpp)|
+|线性基|[this](https://github.com/ColdSnapdragon/ACM-Algorithm-Template/blob/main/Template2/Linear_basis.cpp)|
