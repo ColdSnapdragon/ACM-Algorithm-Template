@@ -1,77 +1,81 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int maxn=1e3+5,inf=0x1f1f1f1f1f1f1f;
-int d[maxn][maxn],pt[maxn][maxn];
+const int maxn = 1e3 + 5, inf = 0x1f1f1f1f1f1f1f;
+int d[maxn][maxn], pt[maxn][maxn];
 int G[1000][1000];
-int ans=inf,n,m;
+int ans = inf, n, m;
 vector<int> res;
-void fun(int a,int b)
+void fun(int a, int b)
 {
-    while(pt[a][b]!=b)
+    while (pt[a][b] != b)
     {
         res.push_back(pt[a][b]);
-        a=pt[a][b];
+        a = pt[a][b];
     }
 }
 void solve()
 {
-    for(int k=1;k<=n;++k)
+    for (int k = 1; k <= n; ++k)
     {
-        for(int i=1;i<k;++i)
-            for(int j=i+1;j<k;++j)
-                if(ans>d[i][j]+G[i][k]+G[k][j])
+        for (int i = 1; i < k; ++i)
+            for (int j = i + 1; j < k; ++j)
+                if (ans > d[i][j] + G[i][k] + G[k][j])
                 {
-                    ans=d[i][j]+G[i][k]+G[k][j];
+                    ans = d[i][j] + G[i][k] + G[k][j];
                     res.clear();
-                    fun(i,j);
+                    fun(i, j);
                     res.push_back(i);
                     res.push_back(k);
                     res.push_back(j);
                 }
-        for(int i=1;i<=n;++i)
-            for(int j=1;j<=n;++j)
-                if(d[i][j]>d[i][k]+d[k][j])
+        for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= n; ++j)
+                if (d[i][j] > d[i][k] + d[k][j])
                 {
-                    d[i][j]=d[i][k]+d[k][j];
-                    pt[i][j]=pt[i][k];
+                    d[i][j] = d[i][k] + d[k][j];
+                    pt[i][j] = pt[i][k];
                 }
     }
 }
 int main()
 {
-    cin>>n>>m;
-    memset(G,0x1f,sizeof(G));//0x1f1f1f1f1f1f*3不会爆int
-    memset(d,0x1f,sizeof(d));
-    for(int i=1;i<=n;++i)
-        d[i][i]=G[i][i]=0;
-    for(int i=1;i<=n;++i)
-        for(int j=1;j<=n;++j)
-        {pt[i][j]=j;pt[j][i]=i;}
-    for(int i=1;i<=m;++i)
-    {
-        int x,y,z;
-        scanf("%d%d%d",&x,&y,&z);
-        if(G[x][y]>z)
+    cin >> n >> m;
+    memset(G, 0x1f, sizeof(G)); // 0x1f1f1f1f1f1f*3不会爆int
+    memset(d, 0x1f, sizeof(d));
+    for (int i = 1; i <= n; ++i)
+        d[i][i] = G[i][i] = 0;
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= n; ++j)
         {
-            d[x][y]=G[x][y]=z;
-            d[y][x]=G[y][x]=z;
+            pt[i][j] = j;
+            pt[j][i] = i;
+        }
+    for (int i = 1; i <= m; ++i)
+    {
+        int x, y, z;
+        scanf("%d%d%d", &x, &y, &z);
+        if (G[x][y] > z)
+        {
+            d[x][y] = G[x][y] = z;
+            d[y][x] = G[y][x] = z;
         }
     }
     solve();
-    if(ans==inf)
-        cout<<"No solution.";
-    else{
-        int a=inf,k=0;
-        int vn=res.size();
-        for(int i=0;i<vn;++i)
-            if(res[i]<a)
+    if (ans == inf)
+        cout << "No solution.";
+    else
+    {
+        int a = inf, k = 0;
+        int vn = res.size();
+        for (int i = 0; i < vn; ++i)
+            if (res[i] < a)
             {
-                a=res[i];
-                k=i;
+                a = res[i];
+                k = i;
             }
-        for(int i=0;i<vn;++i)
+        for (int i = 0; i < vn; ++i)
         {
-            printf("%d ",res[(k-i+vn)%vn]);
+            printf("%d ", res[(k - i + vn) % vn]);
         }
     }
 }
